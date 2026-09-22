@@ -1,0 +1,67 @@
+version: 1
+
+setup_command: "npm install"
+
+paths:
+  "**":
+    domains:
+      - "core"
+
+scenarios:
+  - id: ADOPTED-TEST-001
+    name: Project-native affected tests
+    level: integration
+    domains:
+      - "core"
+    triggers:
+      - affected
+    platforms:
+      - "linux"
+    command: "npm test"
+    invariants:
+      - "project-native tests remain green for affected changes"
+    release_gate: true
+
+  - id: ADOPTED-LINT-001
+    name: Project lint
+    level: static
+    domains:
+      - "core"
+    triggers:
+      - pr
+    platforms:
+      - "linux"
+    command: "npm run lint"
+    invariants:
+      - "project lint remains green"
+    release_gate: true
+
+  - id: ADOPTED-TYPECHECK-001
+    name: Project typecheck
+    level: static
+    domains:
+      - "core"
+    triggers:
+      - pr
+    platforms:
+      - "linux"
+    command: "npm run typecheck"
+    invariants:
+      - "project typecheck remains green"
+    release_gate: true
+
+  - id: ADOPTED-STATIC-001
+    name: Git whitespace validation
+    level: static
+    domains:
+      - "core"
+    triggers:
+      - pr
+      - preflight
+      - release
+    platforms:
+      - "linux"
+    command: "git diff --check"
+    invariants:
+      - "repository diff has no whitespace errors"
+    release_gate: true
