@@ -11,22 +11,24 @@ engineering_system:
 project:
   name: "athena"
   type: "node"
-  maturity: "development"
+  maturity: "production"
 
 domains:
   - "core"
 
 platforms:
   - "linux"
+  - "docker"
 
 operations:
-  production_oriented: false
-  runbook_required: false
-  incident_response_required: false
-  persistent_state: false
-  runbook_paths: []
-  health_command: ""
-  backup_command: ""
-  restore_test_command: ""
-  upgrade_command: ""
+  production_oriented: true
+  runbook_required: true
+  incident_response_required: true
+  persistent_state: true
+  runbook_paths:
+    - "README.md"
+  health_command: "docker compose exec -T mcp bun -e 'const r=await fetch(\"http://127.0.0.1:8080/health\"); if(!r.ok) process.exit(1)'"
+  backup_command: "docker compose run --rm backup now"
+  restore_test_command: "docker compose run --rm backup now && docker compose run --rm backup restore list"
+  upgrade_command: "docker compose run --rm backup now && docker compose build && docker compose up -d"
   rollback_command: ""
