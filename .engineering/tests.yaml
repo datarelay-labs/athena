@@ -1,6 +1,6 @@
 version: 1
 
-setup_command: "npm install"
+setup_command: "bun install --frozen-lockfile"
 
 paths:
   "**":
@@ -17,7 +17,7 @@ scenarios:
       - affected
     platforms:
       - "linux"
-    command: "npm test"
+    command: "bun test"
     invariants:
       - "project-native tests remain green for affected changes"
     release_gate: true
@@ -31,7 +31,7 @@ scenarios:
       - pr
     platforms:
       - "linux"
-    command: "npm run lint"
+    command: "bun run lint"
     invariants:
       - "project lint remains green"
     release_gate: true
@@ -45,7 +45,7 @@ scenarios:
       - pr
     platforms:
       - "linux"
-    command: "npm run typecheck"
+    command: "bun run typecheck"
     invariants:
       - "project typecheck remains green"
     release_gate: true
