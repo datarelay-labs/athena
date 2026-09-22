@@ -4,18 +4,22 @@ exact_head_required: true
 artifact_hash_required: false
 provenance_required: false
 sbom_required: false
-setup_command: ""
+setup_command: "bun install --frozen-lockfile"
 preflight_required: false
 preflight_command: ""
-qualification_command: ""
+qualification_command: "bun run check && docker compose config --quiet"
 artifact_hash_command: ""
 provenance_command: ""
 sbom_command: ""
-operational_e2e_required: false
-operational_e2e_command: ""
-full_e2e_passes: 0
-public_smoke_required: false
-public_smoke_command: ""
+operational_e2e_required: true
+operational_e2e_command: >-
+  docker compose ps &&
+  docker compose exec -T mcp bun -e 'const r=await fetch("http://127.0.0.1:8080/health"); if(!r.ok) process.exit(1)'
+full_e2e_passes: 1
+public_smoke_required: true
+public_smoke_command: >-
+  test -n "$MCP_PUBLIC_URL" &&
+  curl -fsS "${MCP_PUBLIC_URL%/}/health" >/dev/null
 
 blockers:
   p0: true
