@@ -1,0 +1,33 @@
+engineering_system:
+  version: 1.6.5
+  mode: adopted
+  baseline: 14150e424c922ff3a930b45dcf31d3a3d3ba28b2
+  ci_mode: native
+  native_ci_workflows:
+  - .github/workflows/ci.yml
+  - .github/workflows/website.yml
+  merge_gate_status: advisory
+project:
+  name: athena
+  type: node
+  maturity: production
+domains:
+- core
+platforms:
+- linux
+- docker
+operations:
+  production_oriented: true
+  runbook_required: true
+  incident_response_required: true
+  persistent_state: true
+  runbook_paths:
+  - README.md
+  health_command: docker compose exec -T mcp bun -e 'const r=await fetch("http://127.0.0.1:8080/health");
+    if(!r.ok) process.exit(1)'
+  backup_command: docker compose run --rm backup now
+  restore_test_command: docker compose run --rm backup now && docker compose run --rm
+    backup restore list
+  upgrade_command: docker compose run --rm backup now && docker compose build && docker
+    compose up -d
+  rollback_command: ''
