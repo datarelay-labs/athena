@@ -5,32 +5,32 @@
   "additionalProperties": false,
   "required": ["version"],
   "properties": {
-    "version": { "type": "integer", "const": 1 },
+    "version": {"type": "integer", "const": 1},
     "skills": {
       "type": "array",
       "maxItems": 32,
-      "items": { "$ref": "#/$defs/skill" }
+      "items": {"$ref": "#/$defs/skill"}
     },
     "hooks": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "session_start": { "$ref": "#/$defs/hookList" },
-        "pre_tool": { "$ref": "#/$defs/hookList" },
-        "post_tool": { "$ref": "#/$defs/hookList" },
-        "session_end": { "$ref": "#/$defs/hookList" }
+        "session_start": {"$ref": "#/$defs/hookList"},
+        "pre_tool": {"$ref": "#/$defs/hookList"},
+        "post_tool": {"$ref": "#/$defs/hookList"},
+        "session_end": {"$ref": "#/$defs/hookList"}
       }
     },
     "profiles": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "repo_read": { "$ref": "#/$defs/profile" },
-        "repo_write": { "$ref": "#/$defs/profile" },
-        "external_read": { "$ref": "#/$defs/profile" },
-        "external_write": { "$ref": "#/$defs/profile" },
-        "production_read": { "$ref": "#/$defs/profile" },
-        "production_write": { "$ref": "#/$defs/profile" }
+        "repo_read": {"$ref": "#/$defs/profile"},
+        "repo_write": {"$ref": "#/$defs/profile"},
+        "external_read": {"$ref": "#/$defs/profile"},
+        "external_write": {"$ref": "#/$defs/profile"},
+        "production_read": {"$ref": "#/$defs/profile"},
+        "production_write": {"$ref": "#/$defs/profile"}
       }
     }
   },
@@ -55,7 +55,7 @@
             "maxLength": 80,
             "pattern": "^[a-z][a-z0-9_-]*$"
           },
-          "kind": { "const": "metadata" }
+          "kind": {"const": "metadata"}
         }
       }
     },
@@ -84,17 +84,17 @@
           "maxLength": 64,
           "pattern": "^[a-z][a-z0-9_-]*$"
         },
-        "trigger": { "type": "string", "minLength": 1, "maxLength": 160 },
-        "body": { "$ref": "#/$defs/relPath" },
+        "trigger": {"type": "string", "minLength": 1, "maxLength": 160},
+        "body": {"$ref": "#/$defs/relPath"},
         "resources": {
           "type": "array",
           "maxItems": 16,
-          "items": { "$ref": "#/$defs/relPath" }
+          "items": {"$ref": "#/$defs/relPath"}
         },
         "scripts": {
           "type": "array",
           "maxItems": 16,
-          "items": { "$ref": "#/$defs/relPath" }
+          "items": {"$ref": "#/$defs/relPath"}
         }
       }
     },
@@ -106,17 +106,17 @@
         "allowed": {
           "type": "array",
           "uniqueItems": true,
-          "items": { "$ref": "#/$defs/actionClass" }
+          "items": {"$ref": "#/$defs/actionClass"}
         },
         "denied": {
           "type": "array",
           "uniqueItems": true,
-          "items": { "$ref": "#/$defs/actionClass" }
+          "items": {"$ref": "#/$defs/actionClass"}
         },
         "require_approval": {
           "type": "array",
           "uniqueItems": true,
-          "items": { "$ref": "#/$defs/actionClass" }
+          "items": {"$ref": "#/$defs/actionClass"}
         }
       }
     }
