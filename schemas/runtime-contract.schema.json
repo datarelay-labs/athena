@@ -5,15 +5,15 @@
   "additionalProperties": false,
   "required": ["version", "authorities", "capabilities"],
   "properties": {
-    "version": {"type": "integer", "const": 1},
+    "version": { "type": "integer", "const": 1 },
     "authorities": {
       "type": "object",
       "additionalProperties": false,
       "required": ["health", "smoke", "e2e"],
       "properties": {
-        "health": {"const": "operations.health_command"},
-        "smoke": {"const": "release.public_smoke_command"},
-        "e2e": {"const": "release.operational_e2e_command"}
+        "health": { "const": "operations.health_command" },
+        "smoke": { "const": "release.public_smoke_command" },
+        "e2e": { "const": "release.operational_e2e_command" }
       }
     },
     "capabilities": {
@@ -21,12 +21,12 @@
       "additionalProperties": false,
       "required": ["start", "logs", "browser", "metrics", "traces", "cleanup"],
       "properties": {
-        "start": {"$ref": "#/$defs/commandCapability"},
-        "cleanup": {"$ref": "#/$defs/commandCapability"},
-        "logs": {"$ref": "#/$defs/evidenceCapability"},
-        "browser": {"$ref": "#/$defs/evidenceCapability"},
-        "metrics": {"$ref": "#/$defs/evidenceCapability"},
-        "traces": {"$ref": "#/$defs/evidenceCapability"}
+        "start": { "$ref": "#/$defs/commandCapability" },
+        "cleanup": { "$ref": "#/$defs/commandCapability" },
+        "logs": { "$ref": "#/$defs/evidenceCapability" },
+        "browser": { "$ref": "#/$defs/evidenceCapability" },
+        "metrics": { "$ref": "#/$defs/evidenceCapability" },
+        "traces": { "$ref": "#/$defs/evidenceCapability" }
       }
     }
   },
@@ -36,28 +36,28 @@
       "additionalProperties": false,
       "required": ["support"],
       "properties": {
-        "support": {"enum": ["supported", "unsupported"]},
-        "scope": {"const": "worktree"},
-        "command": {"type": "string", "minLength": 1, "maxLength": 240, "pattern": "\\S"}
+        "support": { "enum": ["supported", "unsupported"] },
+        "scope": { "const": "worktree" },
+        "command": { "type": "string", "minLength": 1, "maxLength": 240, "pattern": "\\S" }
       },
       "allOf": [
         {
           "if": {
-            "properties": {"support": {"const": "unsupported"}},
+            "properties": { "support": { "const": "unsupported" } },
             "required": ["support"]
           },
           "then": {
             "not": {
-              "anyOf": [{"required": ["command"]}, {"required": ["scope"]}]
+              "anyOf": [{ "required": ["command"] }, { "required": ["scope"] }]
             }
           }
         },
         {
           "if": {
-            "properties": {"support": {"const": "supported"}},
+            "properties": { "support": { "const": "supported" } },
             "required": ["support"]
           },
-          "then": {"required": ["command", "scope"]}
+          "then": { "required": ["command", "scope"] }
         }
       ]
     },
@@ -66,33 +66,33 @@
       "additionalProperties": false,
       "required": ["support"],
       "properties": {
-        "support": {"enum": ["supported", "unsupported"]},
-        "scope": {"const": "worktree"},
-        "command": {"type": "string", "minLength": 1, "maxLength": 240, "pattern": "\\S"},
-        "fuller_command": {"type": "string", "minLength": 1, "maxLength": 240, "pattern": "\\S"}
+        "support": { "enum": ["supported", "unsupported"] },
+        "scope": { "const": "worktree" },
+        "command": { "type": "string", "minLength": 1, "maxLength": 240, "pattern": "\\S" },
+        "fuller_command": { "type": "string", "minLength": 1, "maxLength": 240, "pattern": "\\S" }
       },
       "allOf": [
         {
           "if": {
-            "properties": {"support": {"const": "unsupported"}},
+            "properties": { "support": { "const": "unsupported" } },
             "required": ["support"]
           },
           "then": {
             "not": {
               "anyOf": [
-                {"required": ["command"]},
-                {"required": ["scope"]},
-                {"required": ["fuller_command"]}
+                { "required": ["command"] },
+                { "required": ["scope"] },
+                { "required": ["fuller_command"] }
               ]
             }
           }
         },
         {
           "if": {
-            "properties": {"support": {"const": "supported"}},
+            "properties": { "support": { "const": "supported" } },
             "required": ["support"]
           },
-          "then": {"required": ["command", "fuller_command", "scope"]}
+          "then": { "required": ["command", "fuller_command", "scope"] }
         }
       ]
     }

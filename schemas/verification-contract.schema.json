@@ -5,18 +5,18 @@
   "additionalProperties": false,
   "required": ["version", "automation_eligible", "features"],
   "properties": {
-    "version": {"type": "integer", "const": 1},
+    "version": { "type": "integer", "const": 1 },
     "automation_eligible": {
       "type": "array",
       "maxItems": 32,
       "uniqueItems": true,
-      "items": {"$ref": "#/$defs/featureId"}
+      "items": { "$ref": "#/$defs/featureId" }
     },
     "features": {
       "type": "array",
       "minItems": 1,
       "maxItems": 32,
-      "items": {"$ref": "#/$defs/feature"}
+      "items": { "$ref": "#/$defs/feature" }
     }
   },
   "$defs": {
@@ -48,17 +48,17 @@
       "type": "array",
       "maxItems": 32,
       "uniqueItems": true,
-      "items": {"$ref": "#/$defs/refId"}
+      "items": { "$ref": "#/$defs/refId" }
     },
     "role": {
       "type": "object",
       "additionalProperties": false,
       "required": ["tests", "runtime", "skills", "profiles"],
       "properties": {
-        "tests": {"$ref": "#/$defs/refList"},
-        "runtime": {"$ref": "#/$defs/refList"},
-        "skills": {"$ref": "#/$defs/refList"},
-        "profiles": {"$ref": "#/$defs/refList"}
+        "tests": { "$ref": "#/$defs/refList" },
+        "runtime": { "$ref": "#/$defs/refList" },
+        "skills": { "$ref": "#/$defs/refList" },
+        "profiles": { "$ref": "#/$defs/refList" }
       }
     },
     "feature": {
@@ -66,25 +66,25 @@
       "additionalProperties": false,
       "required": ["id", "oracle", "minimum_level", "domains", "references"],
       "properties": {
-        "id": {"$ref": "#/$defs/featureId"},
-        "oracle": {"$ref": "#/$defs/oracle"},
-        "minimum_level": {"type": "string", "enum": ["T1", "T2", "T3", "T4", "T5"]},
+        "id": { "$ref": "#/$defs/featureId" },
+        "oracle": { "$ref": "#/$defs/oracle" },
+        "minimum_level": { "type": "string", "enum": ["T1", "T2", "T3", "T4", "T5"] },
         "domains": {
           "type": "array",
           "minItems": 1,
           "maxItems": 8,
           "uniqueItems": true,
-          "items": {"$ref": "#/$defs/domain"}
+          "items": { "$ref": "#/$defs/domain" }
         },
         "references": {
           "type": "object",
           "additionalProperties": false,
           "required": ["launch", "drive", "observe", "cleanup"],
           "properties": {
-            "launch": {"$ref": "#/$defs/role"},
-            "drive": {"$ref": "#/$defs/role"},
-            "observe": {"$ref": "#/$defs/role"},
-            "cleanup": {"$ref": "#/$defs/role"}
+            "launch": { "$ref": "#/$defs/role" },
+            "drive": { "$ref": "#/$defs/role" },
+            "observe": { "$ref": "#/$defs/role" },
+            "cleanup": { "$ref": "#/$defs/role" }
           }
         }
       }

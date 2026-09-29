@@ -15,25 +15,25 @@
     "items"
   ],
   "properties": {
-    "schema_version": {"type": "integer", "const": 1},
-    "kind": {"type": "string", "const": "trust-evidence-receipt"},
-    "target_repo": {"$ref": "#/$defs/repo"},
-    "workstream": {"$ref": "#/$defs/workstream"},
-    "intent_revision": {"$ref": "#/$defs/revision"},
-    "subject_head": {"$ref": "#/$defs/sha"},
-    "feature_id": {"$ref": "#/$defs/featureId"},
-    "oracle": {"$ref": "#/$defs/oracle"},
-    "runtime_subject": {"$ref": "#/$defs/token"},
+    "schema_version": { "type": "integer", "const": 1 },
+    "kind": { "type": "string", "const": "trust-evidence-receipt" },
+    "target_repo": { "$ref": "#/$defs/repo" },
+    "workstream": { "$ref": "#/$defs/workstream" },
+    "intent_revision": { "$ref": "#/$defs/revision" },
+    "subject_head": { "$ref": "#/$defs/sha" },
+    "feature_id": { "$ref": "#/$defs/featureId" },
+    "oracle": { "$ref": "#/$defs/oracle" },
+    "runtime_subject": { "$ref": "#/$defs/token" },
     "items": {
       "type": "array",
       "minItems": 1,
       "maxItems": 32,
-      "items": {"$ref": "#/$defs/item"}
+      "items": { "$ref": "#/$defs/item" }
     }
   },
   "$defs": {
-    "sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
-    "revision": {"type": "integer", "minimum": 1, "maximum": 1000000},
+    "sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "revision": { "type": "integer", "minimum": 1, "maximum": 1000000 },
     "repo": {
       "type": "string",
       "minLength": 3,
@@ -70,8 +70,8 @@
       "maxLength": 80,
       "pattern": "^[A-Za-z][A-Za-z0-9_.:-]*$"
     },
-    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-    "status": {"type": "string", "enum": ["PASS", "FAIL", "BLOCK", "UNKNOWN"]},
+    "digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "status": { "type": "string", "enum": ["PASS", "FAIL", "BLOCK", "UNKNOWN"] },
     "item": {
       "type": "object",
       "additionalProperties": false,
@@ -87,22 +87,14 @@
       "properties": {
         "authority": {
           "type": "string",
-          "enum": [
-            "test",
-            "runtime",
-            "skill",
-            "profile",
-            "ci",
-            "self_report",
-            "automation_policy"
-          ]
+          "enum": ["test", "runtime", "skill", "profile", "ci", "self_report", "automation_policy"]
         },
-        "id": {"$ref": "#/$defs/refId"},
-        "status": {"$ref": "#/$defs/status"},
-        "subject_head": {"$ref": "#/$defs/sha"},
-        "intent_revision": {"$ref": "#/$defs/revision"},
-        "reference": {"$ref": "#/$defs/token"},
-        "external_digest": {"$ref": "#/$defs/digest"}
+        "id": { "$ref": "#/$defs/refId" },
+        "status": { "$ref": "#/$defs/status" },
+        "subject_head": { "$ref": "#/$defs/sha" },
+        "intent_revision": { "$ref": "#/$defs/revision" },
+        "reference": { "$ref": "#/$defs/token" },
+        "external_digest": { "$ref": "#/$defs/digest" }
       }
     }
   }
