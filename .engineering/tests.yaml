@@ -11,6 +11,10 @@ scenarios:
   - id: ADOPTED-TEST-001
     name: Project-native affected tests
     level: integration
+    cost: medium
+    estimated_seconds: 60
+    timeout_seconds: 300
+    agent_default: true
     domains:
       - "core"
     triggers:
