@@ -6,7 +6,20 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!**/dist", "!**/node_modules", "!**/*.min.js", "!data", "!themes"]
+    "includes": [
+      "**",
+      "!**/dist",
+      "!**/node_modules",
+      "!**/*.min.js",
+      "!data",
+      "!themes",
+      "!schemas/knowledge-index.schema.json",
+      "!schemas/runtime-contract.schema.json",
+      "!schemas/skills-contract.schema.json",
+      "!schemas/verification-contract.schema.json",
+      "!schemas/trust-evidence-receipt.schema.json",
+      "!schemas/trust-evidence-boundary.schema.json"
+    ]
   },
   "formatter": {
     "enabled": true,
